@@ -23,6 +23,7 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -119,24 +120,24 @@ public class PinEntryView extends ViewGroup {
 
         // Get style information
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.PinEntryView);
-        digits = array.getInt(R.styleable.PinEntryView_numDigits, 4);
-        inputType = array.getInt(R.styleable.PinEntryView_pinInputType, InputType.TYPE_CLASS_NUMBER);
-        accentType = array.getInt(R.styleable.PinEntryView_accentType, ACCENT_NONE);
+        digits = array.getInt(R.styleable.PinEntryView_PEVnumDigits, 4);
+        inputType = array.getInt(R.styleable.PinEntryView_PEVpinInputType, InputType.TYPE_CLASS_NUMBER);
+        accentType = array.getInt(R.styleable.PinEntryView_PEVaccentType, ACCENT_NONE);
 
         // Dimensions
         DisplayMetrics metrics = getResources().getDisplayMetrics();
-        digitWidth = array.getDimensionPixelSize(R.styleable.PinEntryView_digitWidth,
+        digitWidth = array.getDimensionPixelSize(R.styleable.PinEntryView_PEVdigitWidth,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, metrics));
-        digitHeight = array.getDimensionPixelSize(R.styleable.PinEntryView_digitHeight,
+        digitHeight = array.getDimensionPixelSize(R.styleable.PinEntryView_PEVdigitHeight,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, metrics));
-        digitSpacing = array.getDimensionPixelSize(R.styleable.PinEntryView_digitSpacing,
+        digitSpacing = array.getDimensionPixelSize(R.styleable.PinEntryView_PEVdigitSpacing,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, metrics));
-        digitTextSize = array.getDimensionPixelSize(R.styleable.PinEntryView_digitTextSize,
+        digitTextSize = array.getDimensionPixelSize(R.styleable.PinEntryView_PEVdigitTextSize,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, metrics));
-        accentWidth = array.getDimensionPixelSize(R.styleable.PinEntryView_accentWidth,
+        accentWidth = array.getDimensionPixelSize(R.styleable.PinEntryView_PEVaccentWidth,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, metrics));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            digitElevation = array.getDimensionPixelSize(R.styleable.PinEntryView_digitElevation, 0);
+            digitElevation = array.getDimensionPixelSize(R.styleable.PinEntryView_PEVdigitElevation, 0);
         }
 
         // Get theme to resolve defaults
@@ -145,31 +146,31 @@ public class PinEntryView extends ViewGroup {
         // Background colour, default to android:windowBackground from theme
         TypedValue background = new TypedValue();
         theme.resolveAttribute(android.R.attr.windowBackground, background, true);
-        digitBackground = array.getResourceId(R.styleable.PinEntryView_digitBackground,
+        digitBackground = array.getResourceId(R.styleable.PinEntryView_PEVdigitBackground,
                 background.resourceId);
 
         // Text colour, default to android:textColorPrimary from theme
         TypedValue textColor = new TypedValue();
         theme.resolveAttribute(android.R.attr.textColorPrimary, textColor, true);
-        digitTextColor = array.getColor(R.styleable.PinEntryView_digitTextColor,
+        digitTextColor = array.getColor(R.styleable.PinEntryView_PEVdigitTextColor,
                 textColor.resourceId > 0 ? getResources().getColor(textColor.resourceId) :
                         textColor.data);
 
         // Accent colour, default to android:colorAccent from theme
         TypedValue accentColor = new TypedValue();
         theme.resolveAttribute(R.attr.colorAccent, accentColor, true);
-        this.accentColor = array.getColor(R.styleable.PinEntryView_pinAccentColor,
+        this.accentColor = array.getColor(R.styleable.PinEntryView_PEVpinAccentColor,
                 accentColor.resourceId > 0 ? getResources().getColor(accentColor.resourceId) :
                         accentColor.data);
 
         // Mask character
-        String maskCharacter = array.getString(R.styleable.PinEntryView_mask);
+        String maskCharacter = array.getString(R.styleable.PinEntryView_PEVmask);
         if (maskCharacter != null) {
             mask = maskCharacter;
         }
 
         // Accent shown, default to only when focused
-        accentRequiresFocus = array.getBoolean(R.styleable.PinEntryView_accentRequiresFocus, true);
+        accentRequiresFocus = array.getBoolean(R.styleable.PinEntryView_PEVaccentRequiresFocus, true);
 
         // Recycle the typed array
         array.recycle();
@@ -483,7 +484,7 @@ public class PinEntryView extends ViewGroup {
     /**
      * Custom text view that adds a coloured accent when selected
      */
-    private class DigitView extends TextView {
+    private class DigitView extends AppCompatTextView {
 
         /**
          * Paint used to draw accent
