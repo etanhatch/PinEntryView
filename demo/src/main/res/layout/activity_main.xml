@@ -20,29 +20,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:accentType="all"
-            app:digitBackground="@android:color/white"
-            app:digitElevation="10dp" />
+            app:PEVaccentType="all"
+            app:PEVdigitBackground="@android:color/white"
+            app:PEVdigitElevation="10dp" />
 
         <me.philio.pinentry.PinEntryView
             android:id="@+id/pin_entry_border"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:accentType="character"
-            app:digitBackground="@drawable/background_border"
-            app:digitTextSize="11sp"
-            app:mask=""
-            app:pinInputType="text" />
+            app:PEVaccentType="character"
+            app:PEVdigitBackground="@drawable/background_border"
+            app:PEVdigitTextSize="11sp"
+            app:PEVmask=""
+            app:PEVpinInputType="text" />
 
         <me.philio.pinentry.PinEntryView
             android:id="@+id/pin_entry_colors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:accentType="all"
-            app:digitBackground="@color/red"
-            app:digitTextColor="@android:color/white"
-            app:pinAccentColor="@color/amber" />
+            app:PEVaccentType="all"
+            app:PEVdigitBackground="@color/red"
+            app:PEVdigitTextColor="@android:color/white"
+            app:PEVpinAccentColor="@color/amber" />
     </LinearLayout>
 </ScrollView>
